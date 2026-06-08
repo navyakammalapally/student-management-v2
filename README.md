@@ -37,19 +37,23 @@ A Student Management System developed using HTML, CSS, and JavaScript. The appli
 
 ## Project Structure
 
-Student-Management-System/
+## Project Structure
+
+```text
+student-management-v2/
 │
-├── index.html
-├── register.html
-├── login.html
-├── dashboard.html
-├── addstudents.html
-├── viewstudents.html
-├── editstudents.html
-├── logout.html
-├── styles.css
-├── script.js
-└── README.md
+├── index.html              # Home Page
+├── register.html           # User Registration Page
+├── login.html              # User Login Page
+├── dashboard.html          # Dashboard Page
+├── addstudents.html        # Add Student Page
+├── viewstudents.html       # View Students Page
+├── editstudents.html       # Edit Student Page
+├── logout.html             # Logout Page
+├── styles.css              # CSS Styling
+├── script.js               # Authentication & Student Management Logic
+└── README.md               # Project Documentation
+```
 
 ## Functionalities
 
