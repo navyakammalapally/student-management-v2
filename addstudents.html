@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Students - Student Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="addstudents.html">Add Students</a>
+        <a href="viewstudents.html">View Students</a>
+        <a href="logout.html">Logout</a>
+    </nav>
+    <br>
+    <h1>Add Students - Student Management System</h1>
+   <form onsubmit="addStudent(event)">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" min="3" max="10" required><br><br>
+        <label for="roll no">Roll Number:</label><br>
+        <input type="text" id="roll" name="roll" required><br><br>
+        <label for="branch">Branch:</label><br>
+        <input type="text" id="branch" name="branch" required><br><br>
+        <label for="cgpa">CGPA:</label><br>
+        <input type="number" id="cgpa" name="cgpa" step="0.01" min="0" max="10" required><br><br>
+        <input type="submit" value="Add Student">
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>

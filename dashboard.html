@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Student Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+     <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="addstudents.html">Add Students</a>
+        <a href="viewstudents.html">View Students</a>
+        <a href="logout.html">Logout</a>
+    </nav>
+    <br>
+    <h1>Dashboard - Student Management System</h1>
+
+    <p>
+    Welcome to the dashboard! Here you can manage student records.
+    Use the navigation links to access different sections of the system.
+    </p>
+
+    <div class="dashboard-buttons">
+    <a href="addstudents.html" class="dashboard-btn">Add Students</a>
+
+    <a href="viewstudents.html" class="dashboard-btn">View Students</a>
+    </div>
+    <script>
+        let user = localStorage.getItem("loggedInUser");
+
+        if (!user) {
+        alert("Please login first");
+        window.location.href = "login.html";
+        }
+</script>
+</body>
+</html>
