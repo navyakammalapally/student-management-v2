@@ -1,11 +1,32 @@
-// USER REGISTRATION 
+// USER REGISTRATION
 function registerUser(event) {
     event.preventDefault();
 
-    let email = document.getElementById("email").value;
-    let username = document.getElementById("username").value;
+    let email = document.getElementById("email").value.trim();
+    let username = document.getElementById("username").value.trim();
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("confirmPassword").value;
+
+    // Regular Expressions
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const usernameRegex = /^[a-zA-Z0-9_]{4,15}$/;
+    const passwordRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
+    if (!emailRegex.test(email)) {
+        alert("Enter a valid email address!");
+        return;
+    }
+
+    if (!usernameRegex.test(username)) {
+        alert("Username must be 4-15 characters and contain only letters, numbers, and underscore.");
+        return;
+    }
+
+    if (!passwordRegex.test(password)) {
+        alert("Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character.");
+        return;
+    }
 
     // Check password match
     if (password !== confirmPassword) {
@@ -35,12 +56,20 @@ function registerUser(event) {
     alert("Registration Successful!");
     window.location.href = "login.html";
 }
-// USER LOGIN 
+
+// USER LOGIN
 function loginUser(event) {
     event.preventDefault();
 
-    let email = document.getElementById("email").value;
+    let email = document.getElementById("email").value.trim();
     let password = document.getElementById("password").value;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+        alert("Enter a valid email address!");
+        return;
+    }
 
     let users = JSON.parse(localStorage.getItem("users")) || [];
 
@@ -68,10 +97,30 @@ function logoutUser() {
 function addStudent(event) {
     event.preventDefault();
 
-    let name = document.getElementById("name").value;
-    let roll = document.getElementById("roll").value;
-    let branch = document.getElementById("branch").value;
-    let cgpa = document.getElementById("cgpa").value;
+    let name = document.getElementById("name").value.trim();
+    let roll = document.getElementById("roll").value.trim();
+    let branch = document.getElementById("branch").value.trim();
+    let cgpa = document.getElementById("cgpa").value.trim();
+
+    // Regular Expressions
+    const nameRegex = /^[A-Za-z ]{3,50}$/;
+    const rollRegex = /^[A-Za-z0-9]{4,15}$/;
+    const cgpaRegex = /^(10(\.0)?|[0-9](\.[0-9]{1,2})?)$/;
+
+    if (!nameRegex.test(name)) {
+        alert("Name should contain only letters and spaces (3-50 characters).");
+        return;
+    }
+
+    if (!rollRegex.test(roll)) {
+        alert("Roll Number must be 4-15 alphanumeric characters.");
+        return;
+    }
+
+    if (!cgpaRegex.test(cgpa) || parseFloat(cgpa) > 10) {
+        alert("Enter a valid CGPA between 0 and 10.");
+        return;
+    }
 
     let students = JSON.parse(localStorage.getItem("students")) || [];
 
@@ -129,11 +178,10 @@ function loadStudents() {
             </td>
         </tr>
         `;
-
     });
 }
 
-//EDIT STUDENT
+// EDIT STUDENT
 function loadStudentForEdit() {
 
     let params = new URLSearchParams(window.location.search);
@@ -141,7 +189,7 @@ function loadStudentForEdit() {
 
     let students = JSON.parse(localStorage.getItem("students")) || [];
 
-    if(index === null || !students[index]) return;
+    if (index === null || !students[index]) return;
 
     document.getElementById("name").value = students[index].name;
     document.getElementById("roll").value = students[index].roll;
@@ -159,11 +207,36 @@ function updateStudent(event) {
 
     let students = JSON.parse(localStorage.getItem("students")) || [];
 
+    let name = document.getElementById("name").value.trim();
+    let roll = document.getElementById("roll").value.trim();
+    let branch = document.getElementById("branch").value.trim();
+    let cgpa = document.getElementById("cgpa").value.trim();
+
+    // Regular Expressions
+    const nameRegex = /^[A-Za-z ]{3,50}$/;
+    const rollRegex = /^[A-Za-z0-9]{4,15}$/;
+    const cgpaRegex = /^(10(\.0)?|[0-9](\.[0-9]{1,2})?)$/;
+
+    if (!nameRegex.test(name)) {
+        alert("Name should contain only letters and spaces.");
+        return;
+    }
+
+    if (!rollRegex.test(roll)) {
+        alert("Roll Number must be 4-15 alphanumeric characters.");
+        return;
+    }
+
+    if (!cgpaRegex.test(cgpa) || parseFloat(cgpa) > 10) {
+        alert("Enter a valid CGPA between 0 and 10.");
+        return;
+    }
+
     students[index] = {
-        name: document.getElementById("name").value,
-        roll: document.getElementById("roll").value,
-        branch: document.getElementById("branch").value,
-        cgpa: document.getElementById("cgpa").value
+        name,
+        roll,
+        branch,
+        cgpa
     };
 
     localStorage.setItem("students", JSON.stringify(students));
